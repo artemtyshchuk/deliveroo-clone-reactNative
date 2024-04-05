@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import * as Icons from "react-native-heroicons/outline";
 import { UserIcon, ChevronDownIcon } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
+import FeaturedRow from "../components/FeaturedRow";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -50,7 +51,7 @@ const HomeScreen = () => {
             keyboardType="default"
           />
         </View>
-        <Icons.AdjustmentsHorizontalIcon />
+        <Icons.AdjustmentsHorizontalIcon color="#00CCBB" />
       </View>
 
       {/* Body */}
@@ -58,7 +59,27 @@ const HomeScreen = () => {
       <ScrollView className="bg-gray-100">
         {/* Categories */}
         <Categories />
-        {/* Featured Rows */}
+
+        {/* Featured */}
+        <FeaturedRow
+          id="1"
+          title="Featured"
+          description="Paid placements from our partners"
+        />
+
+        {/* Tasty discounts */}
+        <FeaturedRow
+          id="2"
+          title="Featured"
+          description="Paid placements from our partners"
+        />
+
+        {/* Offers near you */}
+        <FeaturedRow
+          id="3"
+          title="Featured"
+          description="Paid placements from our partners"
+        />
       </ScrollView>
     </SafeAreaView>
   );
