@@ -15,7 +15,9 @@
     "sanity"
   ],
   "dependencies": {
+    "@sanity/client": "^6.15.11",
     "@sanity/vision": "^3.36.4",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
