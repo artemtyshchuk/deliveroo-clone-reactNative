@@ -11,6 +11,9 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
+    "@sanity/client": "^6.15.11",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "3.36.4",
     "expo": "~50.0.14",
     "expo-status-bar": "~1.11.1",
     "nativewind": "^2.0.11",

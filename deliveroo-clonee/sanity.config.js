@@ -1,18 +1,18 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
+import schemas from './schemaTypes/index'
 
 export default defineConfig({
-  name: 'default',
+  name: 'deliveroo-clone',
   title: 'deliveroo-clone',
 
   projectId: 'r0p0271y',
-  dataset: 'production',
+  dataset: 'dataset-sanity',
 
   plugins: [structureTool(), visionTool()],
 
   schema: {
-    types: schemaTypes,
+    types: schemas,
   },
 })

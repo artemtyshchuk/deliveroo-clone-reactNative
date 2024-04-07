@@ -6,14 +6,18 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import * as Icons from "react-native-heroicons/outline";
 import { UserIcon, ChevronDownIcon } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
+import sanityClient from "../sanity";
+import category from "../deliveroo-clonee/schemaTypes/category";
 
 const HomeScreen = () => {
+  const [featuredCategories, setFeaturedCategories] = useState([]);
+
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -21,6 +25,25 @@ const HomeScreen = () => {
       headerShown: false,
     });
   }, []);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+    *[_type == "featured"] {
+      ...,
+      restaurants[]->{
+        ...,
+      dishes[]->
+      }
+    }
+    `
+      )
+      .then((data) => {
+        setFeaturedCategories(data);
+      });
+  }, []);
+
   return (
     <SafeAreaView className="bg-white pt-5">
       {/* Header */}
@@ -60,26 +83,14 @@ const HomeScreen = () => {
         {/* Categories */}
         <Categories />
 
-        {/* Featured */}
-        <FeaturedRow
-          id="1"
-          title="Featured"
-          description="Paid placements from our partners"
-        />
-
-        {/* Tasty discounts */}
-        <FeaturedRow
-          id="2"
-          title="Featured"
-          description="Paid placements from our partners"
-        />
-
-        {/* Offers near you */}
-        <FeaturedRow
-          id="3"
-          title="Featured"
-          description="Paid placements from our partners"
-        />
+        {featuredCategories?.map((category) => (
+          <FeaturedRow
+            key={category._id}
+            id={category._id}
+            title={category.name}
+            description={category.short_description}
+          />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
