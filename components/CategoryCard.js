@@ -1,10 +1,15 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { urlFor } from "../sanity";
+import { useNavigation } from "@react-navigation/native";
 
-const CategoryCard = ({ imgUrl, title }) => {
+const CategoryCard = ({ imgUrl, title, id }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity className="relative mr-2">
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Category", { imgUrl, title })}
+      className="relative mr-2"
+    >
       <View>
         <Image
           source={{
